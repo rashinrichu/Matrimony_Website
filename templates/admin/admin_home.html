@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge">
+	<meta name="viewport"
+		content="width=device-width,
+				initial-scale=1.0">
+	<title>GeeksForGeeks</title>
+	<link rel="stylesheet"
+		href="style.css">
+	<link rel="stylesheet"
+		href="responsive.css">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Link to Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Link to Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+	<!-- for header part -->
+	<header>
+
+        <div id="mySidebar" class="sidebar">
+          
+          
+            <img src="https://cdn1.iconfinder.com/data/icons/wedding-and-love-3/256/wedding-marriage-love-couple-married-groom-bride-1024.png" alt="Logo" class="mr-2"
+            style="width:70px;">
+
+            <span class="logo-text" style="font-size: 30px;">SoulMates Hub</span>
+
+            
+            <a href="{% url 'logout' %}"><img src="https://th.bing.com/th/id/OIP.Kb13Ps1nwSYI5LrhQwEhAwHaHa?pid=ImgDet&w=500&h=500&rs=1" height="50px" width="50px">LogOut</a>
+            <form action="/search_id_admin/" class="d-flex mb-3 mb-lg-0" method="get" >
+                    <div class="input-group flex-nowrap">
+                        <input type="text" class="form-control form-control-lg" name="q" placeholder="Search Here" value="{{query}}">
+                        <button type="submit" class="input-group-text btn" id="btt" style="background-color:#B52725; color:white;">
+                            <i class="bi bi-search me-2"></i> Search
+                        </button>
+                    </div>
+                </form>
+                
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="/admin_home/">HOME</a>
+
+   
+                
+    
+                  
+          
+                        
+          
+             
+          
+              
+                        
+              <a href="/user_profiles/">
+                Users</a>
+                <a href="/subscription_list_admin/">
+                    Subsriptions</a>
+
+                <a href="/all_reports/">
+                    Report</a>
+              
+          
+                  
+            </div>
+          </div>
+          
+          
+          
+          <div id="main">
+            <button class="openbtn" onclick="openNav()" style="background-color:#B52725;color:white;">&#9776;SoulMates Hub</button>
+          
+          </div>
+
+
+
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="https://wallpapercave.com/wp/wp2892680.jpg" class="d-block w-100" alt="Image 1" style="max-height: 700px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://png.pngtree.com/thumb_back/fw800/back_our/20190622/ourmid/pngtree-festive-wedding-fair-ring-red-background-poster-image_208358.jpg" class="d-block w-100" alt="Image 2" style="max-height: 700px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://th.bing.com/th/id/R.4f8eaa54807333336ce7883abe19be13?rik=ahTH2z9RhFxUww&riu=http%3a%2f%2fwww.dream-wallpaper.com%2ffree-wallpaper%2fart-wallpaper%2fwedding-bride-1-wallpaper%2f1440x900%2ffree-wallpaper-12.jpg&ehk=FAJlchmevUp%2fsP8AqQ8y0ZJG6EpSZwqmGTbQLeILRfU%3d&risl=&pid=ImgRaw&r=0" class="d-block w-100" alt="Image 3" style="max-height: 700px;">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://www.rxwallpaper.site/wp-content/uploads/contact-us-for-wedding-website-indian-marriage-e-invitation-card.jpg" class="d-block w-100" alt="Image 4" style="max-height: 700px;">
+                      </div>
+                    </div>
+                  </div>
+                  
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            
+              <div class="center">
+                <br>
+                <br>
+                <h2 class="text-center" id="text-center">Find Your SoulMate</h2>
+                <div class="container mt-4">
+                <div class="row">
+                  <div class="col-md-6 col-lg-3">
+                    <div class="card text-center" style="max-width: 100%;">                     <a href="/signup/"><img src="https://thumbs.dreamstime.com/b/sign-up-member-icon-isolated-glossy-red-round-button-abstract-illustration-sign-up-member-icon-glossy-red-round-button-105955462.jpg" class="card-img-top">       
+                     </a> <h3>Sign Up</h3>
+                      <p>Sign Up For free</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="card text-center">
+                      <img src="https://th.bing.com/th/id/R.b11fc67c32536828187c69ceb7e6cdd2?rik=yKIcG6gZby%2bObw&riu=http%3a%2f%2ficons.iconarchive.com%2ficons%2fpelfusion%2flong-shadow-ios7%2f1024%2fSearch-icon.png&ehk=pwk2RRnxJW2AHC0Oq2lXQ6KnKeRgvwhmU1Vin%2b2MXTU%3d&risl=&pid=ImgRaw&r=0" class="card-img-top">       
+            
+                      <h3>Search</h3>
+                      <p>Sign Up For free</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="card text-center">
+                      <img src="https://th.bing.com/th/id/R.b5eb79a7c29bf1968676f19f57bd9c36?rik=uJ1o%2bjFjk5MyAQ&riu=http%3a%2f%2fbpci.com%2fvertical%2fSites%2f%7b0ACFB910-516E-4B1A-B9F5-AE73903E2F72%7d%2fuploads%2fintegration.png&ehk=9AETrKfYg5ieMvgEz7wRRyn6iM0wyW7t2cioWWmDAKg%3d&risl=&pid=ImgRaw&r=0" class="card-img-top">       
+            
+                      <h3>Connect</h3>
+                      <p>Sign Up For free</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-lg-3">
+                    <div class="card text-center">
+                      <img src="https://static.vecteezy.com/system/resources/previews/002/957/237/large_2x/interaction-icon-with-people-vector.jpg" class="card-img-top">       
+            
+                      <h3>Interact</h3>
+                      <p>Sign Up For free</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+                          
+                      
+              <br>
+              <br>
+              <div style="background-color: white; padding-top: 40px; padding-bottom: 40px;">
+                <h2 class="text-center" style="color:#D93B38;">Recent Updates</h2>
+                <div class="container mt-2" style="background-color: white;">
+                    <div class="row">
+                        {% for user in users|slice:":3" %}
+                        <div class="col-md-4 col-sm-6 item">
+                            <div class="card item-card card-block">
+                                <img src="{{ user.profile_picture.url }}" alt="User Photo" class="img-fluid" style="object-fit: cover; height: 100%;">
+                                <h5 class="item-card-title mt-3 mb-3" style="font-size: 20px; font-weight: bold; color: white;">{{ user.user.username }}</h5>
+                                <!-- Add more user information fields as needed -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+
+              <h6 class="text-center">Assisted Service
+                <br>
+                <br>
+                <button class="know-more-button">Know More</button>
+              </h6>
+              
+              
+              <div class="map">
+                <h2 style="font-size: 30px;color:#D93B38;">We Are EverYWhere</h2>
+                <img src="https://static.vecteezy.com/system/resources/previews/001/214/075/non_2x/pixels-world-map-with-location-pins-vector.jpg" alt="Branch Locations">
+                <div class="overlay">
+                </div>
+              </div>
+              </div>
+              <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col">
+                            <h4>company</h4>
+                            <ul>
+                                <li><a href="#">about us</a></li>
+                                <li><a href="#">our services</a></li>
+                                <li><a href="#">privacy policy</a></li>
+                                <li><a href="#">affiliate program</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                          <h4>Help &amp; Support</h4>
+                          <ul>
+                              <li><a href="#">FAQ</a></li>
+                              <li><a href="#">Contact Us</a></li>
+                              <li><a href="#">Privacy Policy</a></li>
+                              <li><a href="#">Terms &amp; Conditions</a></li>
+                          </ul>
+                      </div>
+                      <div class="footer-col">
+                          <h4>Find Your Match</h4>
+                          <ul>
+                              <li><a href="#">Search Profiles</a></li>
+                              <li><a href="#">Membership Plans</a></li>
+                              <li><a href="#">Success Stories</a></li>
+                              <li><a href="#">Safety Tips</a></li>
+                          </ul>
+                      </div>
+                      
+                        <div class="footer-col">
+                            <h4>follow us</h4>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </footer>
+            
+
+              
+	<script src="./index.js"></script>
+</body>
+</html>
+<style>
+    h3{
+        color:white;
+    }/* Main CSS Here */
+
+
+    section {
+        margin: 0 auto;
+        max-width: 1300px;
+        padding: 0 10px;
+      }
+      
+      ul {
+        display: grid;
+        list-style: none;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        font-weight: bolder;
+        padding: 0;
+      }
+      
+      .image_wrapper {
+        position: relative;
+      }
+      
+      .image_wrapper img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+      
+      .icon i {
+        border-radius: 50%;
+        font-size: 40px;
+        color: #8c9e54;
+        width: 70px;
+        height: 70px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+.card {
+    border: none; /* Remove default card border */
+  }
+  
+  .card-img-top {
+    max-height: 150px; /* Set the maximum height for the image */
+    object-fit: contain; /* Maintain image aspect ratio */
+    padding: 20px; /* Add padding to the top of the card */
+  }
+  
+  .card-body {
+    padding: 15px; /* Add padding to the card body */
+  }
+  .featured-users-container {
+    background-color: #f0f0f0; /* Change to the desired background color */
+  }
+  .user-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .user-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+#white {
+  background-image: none;
+  background-color: white; /* Add this line to set the background color */
+}
+
+  
+@media (max-width: 767px) {
+  h2 {
+   font-size: 20px; /* Half of the original height */
+  }
+}
+
+
+@media (max-width: 767px) {
+  h6 {
+    background-image: linear-gradient(rgba(139, 0, 0, 0.5), rgba(139, 0, 0, 0.5)), url("https://groupsorlink.com/wp-content/uploads/2021/07/dd1wprt-42127996-b1ba-4d9d-82fd-74d3fd67a7aa.png");  color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 90px;
+  } 
+  .know-more-button {
+    padding: 10px 20px;
+    background-color: #D93B38;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .know-more-button:hover {
+    background-color: #B52725;
+  }
+}
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Adjust this value to control the gap between cards */
+  }
+  
+  .card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    background-color: #e91e63;
+  }
+  @media (max-width: 767px) {
+    /* Apply styles for screens with max width 767px (mobile view) */
+    .card-container {
+      flex-direction: column; /* Stack cards vertically */
+      align-items: center; /* Center cards horizontally */
+      gap: 10px; /* Adjust the gap between cards in mobile view */
+    }
+  
+    .card {
+      width: 100%; /* Full width for mobile view */
+      height: auto; /* Auto height to fit content */
+      padding: 10px; /* Reduce padding for mobile view */
+      margin-bottom: 10px; /* Add margin at the bottom of each card for the gap */
+    }
+  }
+  .item{
+    padding-left:5px;
+    padding-right:5px;
+  }
+  .item-card{
+    transition:0.5s;
+    cursor:pointer;
+  }
+  .item-card-title{  
+    font-size:15px;
+    transition:1s;
+    cursor:pointer;
+  }
+  .item-card-title i{  
+    font-size:15px;
+    transition:1s;
+    cursor:pointer;
+    color:#ffa710
+  }
+  .card-title i:hover{
+    transform: scale(1.25) rotate(100deg); 
+    color:#18d4ca;
+    
+  }
+  .card:hover{
+    transform: scale(1.05);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+  }
+  .card-text{
+    height:80px;  
+  }
+  
+  .card::before, .card::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: scale3d(0, 0, 1);
+    transition: transform .3s ease-out 0s;
+    background: rgba(255, 255, 255, 0.1);
+    content: '';
+    pointer-events: none;
+  }
+  .card::before {
+    transform-origin: left top;
+  }
+  .card::after {
+    transform-origin: right bottom;
+  }
+  .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
+    transform: scale3d(1, 1, 1);
+  }
+  
+  body {
+    background-image: url('../static/back.jpg');
+    background-size: cover;
+    background-size: 100% 80%; /* Set the size of the background image */
+            background-repeat: no-repeat;
+            position: relative;
+  }
+  
+  .footer {
+    background-color: white;
+    padding: 10px 0; /* Adjust the top and bottom padding as needed */
+  }
+  
+.footer-col{
+ width: 25%;
+ padding: 0 15px;
+}
+.footer-col h4{
+  font-size: 18px;
+  color:#D93B38 ;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col h4::before{
+  content: '';
+  position: absolute;
+  left:0;
+  bottom: -10px;
+  background-color: #e91e63;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child){
+  margin-bottom: 10px;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: black;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+  color: black;
+  padding-left: 8px;
+}
+.footer-col .social-links a{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255,255,255,0.2);
+  margin:0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: black;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+  color: #24262b;
+  background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+.footer-col{
+  width: 50%;
+  margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+.footer-col{
+  width: 100%;
+}
+
+
+}
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f3f3f3;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out; /* Adjusted the transition */
+    transform: translateX(-250px); /* Hide the sidebar by default */
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 9999;
+    max-height: 100vh;
+    transform: translateX(-100%); /* Change the translateX value to -100% */
+    visibility: hidden; /
+  }
+
+
+
+  .sidebar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    transition: 0.3s;
+  }
+
+  .sidebar a:hover {
+    color:#D93B38;
+  }
+
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #f3f3f3;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+  }
+
+  .openbtn:hover {
+    background-color: #bbb;
+  }
+
+  #main {
+    transition: margin-left 0.5s;
+    padding: 20px;
+  }
+
+  /* The dropdown container */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+    visibility: visible; /* Add this line to make the sidebar visible when open */
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .dropdown-content {
+    width: 200px;
+    background-color: #f6f6f6;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }          
+  h6 {
+    background-image: linear-gradient(rgba(139, 0, 0, 0.5), rgba(139, 0, 0, 0.5)), url("https://groupsorlink.com/wp-content/uploads/2021/07/dd1wprt-42127996-b1ba-4d9d-82fd-74d3fd67a7aa.png");  color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 90px;
+  }
+  .know-more-button {
+    padding: 10px 20px;
+    background-color: #D93B38;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .know-more-button:hover {
+    background-color: #B52725;
+  }
+  @media (max-width: 767px) {
+    h6 {
+      background-image: linear-gradient(rgba(139, 0, 0, 0.5), rgba(139, 0, 0, 0.5)), url("https://groupsorlink.com/wp-content/uploads/2021/07/dd1wprt-42127996-b1ba-4d9d-82fd-74d3fd67a7aa.png");  color: white;
+      background-size: cover;
+      background-attachment: fixed;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 90px;
+    } 
+    .know-more-button {
+      padding: 10px 20px;
+      background-color: #D93B38;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .know-more-button:hover {
+      background-color: #B52725;
+    }
+  }
+  a{
+    font-weight: bold;
+  }
+  .map {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .map h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .map img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    max-height: 400px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .overlay p {
+    font-size: 20px;
+    color: white;
+  }
+  @media (max-width: 767px) {
+    .overlay p {
+        font-size: 8px;
+        color: white;
+
+    }   } 
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        display: inline-block;
+        margin: 0 5px;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        background-color: #f7f7f7;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .pagination .current-page {
+        font-weight: bold;
+        color:#D93B38;
+    }
+    #page{
+        color:#D93B38;
+    }
+    h2{
+        font-size: 60px;
+        font-weight: bold;
+        color:white;
+    }
+/* Apply colors to social icons */
+.social-links a {
+    color: #333; /* Change to your desired color */
+    font-size: 30px; /* Adjust the font size as needed */
+    margin-right: 10px; /* Add spacing between icons */
+    text-decoration: none;
+}
+
+/* On hover, change the color */
+.social-links a:hover {
+    color:#D93B38; /* Change to your desired hover color */
+}
+
+@media (max-width: 767px) {
+    h2 {
+     font-size: 20px; /* Half of the original height */
+    }
+  }
+  label{
+    font-size: 20px;
+    color: white;
+  }
+  #text-center {
+    text-align: center;
+    font-size: 56px;
+    color:#D93B38; /* Change the text color to deep red */
+    font-weight: bold; /* Make the text bold */
+    animation: animateText 2s infinite alternate;
+}
+
+@keyframes animateText {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+@media(max-width: 767px){
+
+  #text-center {
+    text-align: center;
+    font-size: 16px;
+    color:#D93B38; /* Change the text color to deep red */
+    font-weight: bold; /* Make the text bold */
+    animation: animateText 2s infinite alternate;
+}
+
+@keyframes animateText {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}}
+/* Custom CSS to increase card height on larger screens */
+@media (min-width: 992px) {
+    .item-card.card-block {
+        height: 450px; /* Adjust this value as needed */
+        display: flex;
+        object-fit: cover;
+    }
+
+    /* Adjust image size for larger screens */
+    .item-card.card-block img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover; /* Maintain aspect ratio and fit inside the container */
+    }
+}
+
+
+    </style>
+<script>
+    function openNav() {
+        document.getElementById("mySidebar").classList.add("open");
+      }
+    
+      function closeNav() {
+        document.getElementById("mySidebar").classList.remove("open");
+      }
+</script>
+
+<script>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ message }}',
+                    showConfirmButton: true
+                });
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</script>
+<style>
+.card {
+    border: none; /* Remove default card border */
+  }
+  
+  .card-img-top {
+    max-height: 150px; /* Set the maximum height for the image */
+    object-fit: contain; /* Maintain image aspect ratio */
+    padding: 20px; /* Add padding to the top of the card */
+  }
+  
+  .card-body {
+    padding: 15px; /* Add padding to the card body */
+  }
+  #w {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+  }
+  .social-links a {
+    color: #333; /* Change to your desired color */
+    font-size: 30px; /* Adjust the font size as needed */
+    margin-right: 10px; /* Add spacing between icons */
+    text-decoration: none;
+  }
+  
+  /* On hover, change the color */
+  /* Adjust styles for mobile view */
+  @media (max-width: 767px) {
+    .image_wrapper img {
+      width: 90% !important; /* Adjusted width for mobile */
+      height: auto !important; /* Let height adjust automatically */
+    }
+  
+    .overlay {
+      background: rgba(57, 57, 57, 0.8); /* Darker overlay background for better visibility */
+    }
+  
+    .overlay h3 {
+      font-size: 1.5rem; /* Smaller font size for mobile */
+      margin: 0.5rem; /* Adjusted margin for mobile */
+    }
+  
+    .overlay_4 {
+      bottom: 0;
+      height: 50%; /* Adjusted height for mobile */
+      backdrop-filter: blur(4px) brightness(80%); /* Adjusted blur for mobile */
+      transition: all 0.3s ease-in-out;
+    }
+  
+    .image_wrapper:hover .overlay_4 {
+      bottom: 0;
+      height: 100%; /* Full height on hover for mobile */
+    }
+  }
+  
+  
+  @media (max-width: 767px) {
+    h2 {
+     font-size: 20px; /* Half of the original height */
+    }
+  }
+  
+  h6 {
+    background-image: linear-gradient(rgba(139, 0, 0, 0.5), rgba(139, 0, 0, 0.5)), url("https://groupsorlink.com/wp-content/uploads/2021/07/dd1wprt-42127996-b1ba-4d9d-82fd-74d3fd67a7aa.png");  color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 90px;
+  }
+  .know-more-button {
+    padding: 10px 20px;
+    background-color: #D93B38;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .know-more-button:hover {
+    background-color: #B52725;
+  }
+  @media (max-width: 767px) {
+    h6 {
+      background-image: linear-gradient(rgba(139, 0, 0, 0.5), rgba(139, 0, 0, 0.5)), url("https://groupsorlink.com/wp-content/uploads/2021/07/dd1wprt-42127996-b1ba-4d9d-82fd-74d3fd67a7aa.png");  color: white;
+      background-size: cover;
+      background-attachment: fixed;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 90px;
+    } 
+    .know-more-button {
+      padding: 10px 20px;
+      background-color: #D93B38;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .know-more-button:hover {
+      background-color: #B52725;
+    }
+  }
+  .map {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .map h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .map img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    max-height: 400px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .overlay p {
+    font-size: 20px;
+    color: white;
+  }
+  label{
+    font-size: 20px;
+    color: white;
+  }
+  /* Adjust styles for mobile view */
+  @media (max-width: 767px) {
+    .image_wrapper {
+        margin-bottom: 10px;
+    }
+  
+    .overlay {
+        opacity: 1;
+    }
+  }
+  label{
+    color:white;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  p{
+    color:white;
+  }
+  </style>
+  

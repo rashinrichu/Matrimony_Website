@@ -1,0 +1,205 @@
+<div class="main">
+    <h1>User Profiles</h1>
+
+    <table class="table table-striped" id="user-profiles-table">
+                    <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Religion</th>
+                <th>Caste</th>
+                <th>District</th>
+                <th>Place</th>
+                <th>Education</th>
+                <th>Job</th>
+                <th>Height</th>
+                <th>Age</th>
+                <th>Mobile Number</th>
+                <!-- Add more headers for additional fields -->
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in user_profiles %}
+            <tr>
+                <td>{{ profile.user.id }}</td>
+                <td>{{ profile.user.username }}</td>
+                <td>{{ profile.user.email }}</td>
+                <td>{{ profile.get_gender_display }}</td>
+                <td>{{ profile.get_religion_display }}</td>
+                <td>{{ profile.get_caste_display }}</td>
+                <td>{{ profile.district }}</td>
+                <td>{{ profile.place }}</td>
+                <td>{{ profile.get_education_display }}</td>
+                <td>{{ profile.job }}</td>
+                <td>{{ profile.height }}</td>
+                <td>{{ profile.age }}</td>
+                <td>{{ profile.mob }}</td>
+                <!-- Add more <td> elements for additional fields -->
+                <td>
+                    <!-- Add action buttons or links here -->
+                </td>
+                <td>
+                    <form method="post" action="{% url 'approve_profile' profile.user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">Approve</button>
+                    </form>
+                    
+                    <form method="post" action="{% url 'reject_profile' profile.user.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Reject</button>
+                    </form>
+                                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <p><strong>Name:</strong> {{ profile.user.username }}</p>
+    <p><strong>Education:</strong> {{ profile.education }}</p>
+    <p><strong>Religion:</strong> {{ profile.religion }}</p>
+    <p><strong>Age:</strong> {{ profile.age }}</p>
+    <p><strong>Job:</strong> {{ profile.job }}</p>
+    <p><strong>Place:</strong> {{ profile.place }}</p>
+
+
+
+
+
+
+
+
+    <div id="white">
+        <br>
+        <br>
+        <h2 class="text-center" style="color:#D93B38;">Recent Updates</h2>
+    
+        <br>
+        <br>
+    
+        <section id="section">
+          <ul>
+            <li class="image_wrapper">
+              <img src="https://th.bing.com/th/id/R.1939678e62beb7f10bc14b9da5d23389?rik=%2f9ugCpsHALZVeQ&riu=http%3a%2f%2florrye.net%2fimages5%2f0817L%2fbest-gents-hair-styles%2fbest-gents-hair-styles-90_6.jpg&ehk=GQtZ1Xeg8p4tFYtGkJgwVR0IEvLdC6%2fNqxQbt9mL1CI%3d&risl=&pid=ImgRaw&r=0" alt="" style="width: 300px; height: 480px;" />
+              <div class="overlay overlay_4">
+                <h3>You Need To login</h3>
+              </div>
+            </li>
+            <li class="image_wrapper">
+              <img src="https://i.pinimg.com/736x/5d/54/06/5d54066cbfb3f13cb718885c4b6abc48.jpg" alt="" style="width: 300px; height: 480px;" />
+              <div class="overlay overlay_4">
+                <h3>You Need To login</h3>
+              </div>
+            </li>
+            <li class="image_wrapper">
+              <img src="https://th.bing.com/th/id/OIP.LfBtLCx5jWjmzpI_LDs5TwHaL-?pid=ImgDet&rs=1" alt="" style="width: 300px; height: auto;" />
+              <div class="overlay overlay_4">
+                <h3>You Need To login</h3>
+              </div>
+            </li>
+            <li class="image_wrapper">
+              <img src="https://th.bing.com/th/id/R.8a47231b47cb896a41b50250ffd31a07?rik=xMqtW2%2fgrcYPFQ&riu=http%3a%2f%2f4.bp.blogspot.com%2f-hBuAm7n4E94%2fTimwc7G-kjI%2fAAAAAAAAAAM%2fM1lZKi574lQ%2fs400%2fCindy%2bCrawford%2bHairstyle%2b1.jpg&ehk=pbaG1kLsIbqt%2fEcAYFMLq3biBzAVv53zWA4QdGEJeoo%3d&risl=&pid=ImgRaw&r=0" alt="" style="width: 300px; height: 480px;" />
+              <div class="overlay overlay_4">
+                <h3>You Need To login</h3>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+
+
+
+
+
+
+
+
+
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" style="font-size: 40px;">User Profile</div>
+                    <marquee behavior="scroll" direction="left" class="mt-3">
+                        {% if subscriptions %}
+                            {% with has_active_plans=False %}
+                                {% for subscription in subscriptions %}
+                                    {% if subscription.expiration_date >= now %}
+                                        Plan: {{ subscription.name }} Rs - Expiry Date: {{ subscription.expiration_date|date:"F j, Y" }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        {% with has_active_plans=True %}
+                                        {% endwith %}
+                                    {% endif %}
+                                {% endfor %}
+                                {% if not has_active_plans %}
+                                    <h4> No active plans</h4>
+                                {% endif %}
+                            {% endwith %}
+                        {% else %}
+                            <h4> No plans yet</h4>
+                        {% endif %}
+                    </marquee>
+                    
+                    
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
+                            <h2>{{ user_profile.user.username }}</h2>
+                        </div>
+                        <hr>
+                        <p><strong>Education: {{ user_profile.education }}</strong></p>
+                        <p><strong>Selected Course: {{ user_profile.selected_course }}</strong></p>
+                        <p><strong>Job:{{ user_profile.job }}</strong></p>
+                        <p><strong>Religion:{{ user_profile.religion }}</strong></p>
+                        <p><strong>Caste:{{ user_profile.caste }}</strong></p>
+                        <p><strong>District:{{ user_profile.district }}</strong></p>
+                        <p><strong>Place:{{ user_profile.place }}</strong></p>
+                        <p><strong>Gender:{{ user_profile.get_gender_display }}</strong></p>
+                        <p><strong>Custom User ID:{{ user_profile.custom_user_id }}</strong></p>
+                        <p><strong>Worked At:{{ user_profile.worked_at }}</strong></p>
+                        <p><strong>Height:{{ user_profile.height }}</strong></p>
+                        <p><strong>Age:{{ user_profile.age }}</strong></p>
+                        <p><strong>Mobile:{{ user_profile.mob }}</p>
+                            <p><strong>Email:{{ user_profile.user.email }}</p>
+    
+                        <p><strong>Date of Birth:{{ user_profile.date_of_birth }}</strong></p>
+                        <p><strong>Marital Status:{{ user_profile.marital_status }}</strong></p>
+                        <p><strong>Mother's Name:{{ user_profile.mother_name }}</strong></p>
+                        <p><strong>Father's Name:{{ user_profile.father_name }}</strong></p>
+                        <p><strong>Father_job:{{ user_profile.father_job }}</strong></p>
+                        <p><strong>Mother_job:{{ user_profile.mother_job }}</strong></p>
+    <!-- Sibling Information -->
+    <p><strong>Male Siblings:{{ user_profile.male_siblings }}</strong></p>
+    <p><strong>Female Siblings:{{ user_profile.female_siblings }}</strong></p>
+    <p><strong>Married Male Siblings:{{ user_profile.married_male_siblings }}</strong></p>
+    <p><strong>Married Female Siblings:{{ user_profile.married_female_siblings }}</strong></p>
+    
+                        <p><strong>About:{{ user_profile.about }}</strong></p>    
+                                        <div class="text-center mt-3">
+                            <a href="{% url 'edit_photos' %}" class="btn btn-" style="background-color:white;color:#D93B38;font-weight:bold;">Edit Photos</a>
+    
+                            <a href="{% url 'edit_profile' %}" class="btn btn-" style="background-color:white;color:#D93B38;font-weight:bold;">
+                                Edit Profile
+                            </a>
+                            <a href="{% url 'change_password' %}" class="btn btn-" style="background-color:white;color:#D93B38;font-weight:bold;">
+                                Change Password
+                            </a> <button onclick="printUserProfile()" class="btn btn-" style="background-color:white;color:#D93B38;font-weight:bold;">
+                                Print Profile
+                            </button>
+                                    </div>
+                  
+                </div>
+               
+            </div>
+      
+        </div>
+    </div>
+    </div>
+    

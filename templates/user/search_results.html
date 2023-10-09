@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimonial Site</title>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- Link to Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Link to Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="logo d-flex align-items-center">
+          <img src="https://cdn1.iconfinder.com/data/icons/wedding-and-love-3/256/wedding-marriage-love-couple-married-groom-bride-1024.png" alt="Logo" class="mr-2">
+          <span class="logo-text">SoulMates Hub</span>
+        </div>
+        
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav nav-links">
+          <li class="nav-item">
+            <a class="nav-link" href="/user_home/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#advancedSearchModal">Search</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/view_profile/">Profile</a>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="allUsersDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Users
+            </a>
+            <div class="dropdown-menu" aria-labelledby="allUsersDropdown">
+                <a class="dropdown-item" href="/all_users/" style="font-weight: bold;color:black;">View All Users</a>
+                <a class="dropdown-item" href="/interested_profiles/" style="font-weight: bold;color:black;">Interest</a>
+                <a class="dropdown-item" href="/view_report_profile/" style="font-weight: bold;color:black;">Report</a>
+
+              </div>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#subscriptionModal">Subscription</a>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="results">
+    <h2 class="text-center mb-4">Results</h2>
+    <div class="container">
+        <div class="row justify-content-center">
+            {% if results %}
+                {% for profile in results %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="profile-picture-container">
+                                <img src="{{ profile.profile_picture.url }}" class="card-img-top img-fluid profile-picture" alt="Profile Picture">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><strong>{{ profile.user.username }}</strong></h5>
+                                <p>Education:{{ profile.education }}</strong></p>
+                                <p>Religion: {{ profile.get_religion_display }}</strong></p>
+                                <p>Age: {{ profile.age }}</strong></p>
+                                <p>District: {{ profile.district }}</strong></p>
+                                <p>User ID: {{ profile.custom_user_id }}</strong></p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-primary view-details-button" data-toggle="modal" data-target="#userDetailsModal{{ profile.id }}" style="background-color: white;color:#D93B38;font-weight:bold;">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal fade" id="userDetailsModal{{ profile.id }}" tabindex="-1" role="dialog" aria-labelledby="userDetailsModalLabel{{ profile.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="background-color: #D93B38;">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="userDetailsModalLabel{{ profile.id }}" style="color:white;">User Details for {{ profile.user.username }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Education:</strong> {{ profile.education }}</p>
+                                    <p><strong>Religion:</strong> {{ profile.religion }}</p>
+                                    <p><strong>Age:</strong> {{ profile.age }}</p>
+                                    <p><strong>Job:</strong> {{ profile.job }}</p>
+                                    <p><strong>Place:</strong> {{ profile.place }}</p>
+                                    <p><strong>Address:</strong> {{ profile.address }}</p>
+                                    <p><strong>District:</strong> {{ profile.district }}</p>
+                                    <p><strong>Marital Status:</strong> {{ profile.marital_status }}</p>
+                                    <p><strong>Gender:</strong> {{ profile.gender }}</p>
+                                    <p><strong>Height:</strong> {{ profile.height }}</p>
+                                    <p><strong>Mobile:</strong> {{ profile.mob }}</p>
+                                    <p><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</p>
+                                    <p><strong>Mother's Name:</strong> {{ profile.mother_name }}</p>
+                                    <p><strong>Father's Name:</strong> {{ profile.father_name }}</p>
+                                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md-12">
+                    <div class="alert alert-info">
+                        <p style="color:#D93B38;">No users found.</p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col">
+                <h4>company</h4>
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">affiliate program</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Help &amp; Support</h4>
+              <ul>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms &amp; Conditions</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h4>Find Your Match</h4>
+              <ul>
+                  <li><a href="#">Search Profiles</a></li>
+                  <li><a href="#">Membership Plans</a></li>
+                  <li><a href="#">Success Stories</a></li>
+                  <li><a href="#">Safety Tips</a></li>
+              </ul>
+          </div>
+          
+            <div class="footer-col">
+                <h4>follow us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+      .results .card {
+        max-width: 200px; /* Set the maximum width for the card */
+        margin: 0 auto; /* Center the card horizontally */
+    }
+
+    .results .card .profile-picture {
+        max-height: 100px; /* Reduce the height of the profile picture */
+    }
+
+    .results .card-title {
+        font-size: 16px; /* Reduce the font size of the card title */
+    }
+
+    .results .card-body p {
+        font-size: 12px; /* Reduce the font size of card text */
+        margin-bottom: 5px; /* Add some margin between the text */
+    }
+
+    .results .view-details-button {
+        font-size: 14px; /* Reduce the font size of the "View Details" button */
+    }
+
+    .social-links a {
+        color: #333; /* Change to your desired color */
+        font-size: 30px; /* Adjust the font size as needed */
+        margin-right: 10px; /* Add spacing between icons */
+        text-decoration: none;
+      }
+      
+      /* On hover, change the color */
+      .social-links a:hover {
+        color:#D93B38; /* Change to your desired hover color */
+      }
+  
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+.nav-link{
+    font-weight: bold;
+}
+
+.footer{
+    background-color: white;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+    font-size: 18px;
+    color:#D93B38 ;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+.footer-col h4::before{
+    content: '';
+    position: absolute;
+    left:0;
+    bottom: -10px;
+    background-color: #e91e63;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+.footer-col ul li:not(:last-child){
+    margin-bottom: 10px;
+}
+.footer-col ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    color: black;
+    display: block;
+    transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+    color: black;
+    padding-left: 8px;
+}
+.footer-col .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255,255,255,0.2);
+    margin:0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: black;
+    transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+    color: #24262b;
+    background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+
+body {
+    background-image: url('../static/back.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+  
+
+</style>
+<style>
+        /* Style for the avatar image */
+.avatar-img {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-bottom: 20px;
+}
+
+/* Style for the card header */
+.card-header {
+    background-color: #B87333;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Style for the card body */
+.card-body {
+    background-color:#D93B38;
+}
+
+/* Style for the hr separator */
+hr {
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+/* Style for the user information paragraphs */
+.card-body p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Style for the username heading */
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color:white;
+}
+p{
+    color: white;;
+    text-align: center;
+}
+strong{
+    font-size: 30px;
+}
+/* Center the content within the card */
+.text-center {
+    text-align: center;
+}
+
+</style>
+<style>
+
+    .navbar {
+      background-color: #f8f8f8;
+      display: flex;
+      justify-content: center; /* Center-align contents horizontally */
+      align-items: center;
+      padding: 10px 0; /* Remove horizontal padding and keep vertical padding */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      font-size: 34px;
+      font-weight: bold;
+      color: #D93B38;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px; /* Add a gap between navigation items */
+      margin: 0; /* Remove margin to align navigation links properly */
+      padding: 0; /* Remove padding to align navigation links properly */
+    }
+    
+    .nav-links li {
+      font-size: 25px; /* Adjust the font size */
+      padding: 5px 10px;
+      transition: background-color 0.3s ease; /* Add a transition for the background color change */
+    }
+    
+    .nav-links li:hover {
+      background-color: #D93B38; /* Change the background color on hover to deep red */
+    }
+    
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links li:hover a {
+      color: #fff; /* Change the text color to white on hover */
+    }
+    
+    .navbar .logo img {
+      max-height: 70px; /* Set the maximum height of the image */
+      margin-right: 5px; /* Add some spacing between the image and text */
+    }
+/* CSS */
+/* For larger screens (desktop) */
+.logo {
+    font-size: 34px;
+    font-weight: bold;
+    color: #D93B38;
+  }
+  
+  /* For smaller screens (mobile) */
+  @media (max-width: 767px) {
+    .logo-text {
+      font-size: 20px; /* Adjust the font size for mobile view */
+      display: inline; /* Display the logo text on mobile view */
+      margin-left: 10px; /* Add some spacing between the logo image and text */
+    }
+  
+    .logo img {
+      max-height: 50px; /* Adjust the image height for mobile view */
+    }
+  }
+  
+      
+    h2{
+        color:white;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+ 
+      .login-modal .modal-content {
+        background-color: #D93B38; /* Deep Red background color */
+        border: none;
+        color: #fff; /* Text color */
+      }
+  
+      .login-modal .modal-header {
+        border-bottom: none;
+      }
+  
+      .login-modal .modal-title {
+        color: #fff; /* Title color */
+      }
+  
+      .login-modal .close {
+        color: #fff; /* Close icon color */
+      }
+  
+      .login-modal .form-control {
+        background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+        color: #fff; /* Text color */
+      }
+  
+      .login-modal .btn-primary {
+        background-color: #fff; /* Button background color */
+        color: #D93B38; /* Button text color */
+      }
+  
+      .login-modal .btn-primary:hover {
+        background-color: #D93B38; /* Button background color on hover */
+        color: #fff; /* Button text color on hover */
+      }
+      h3,p{
+        color:white;
+      }
+      .form-container {
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .form-control {
+        margin-bottom: 15px;
+    }
+    .btn-primary {
+        width: 100%;
+    }
+    p{
+        font-size: 30px;
+        font-weight: bold;
+        color:white;
+    }
+    strong{
+        font-size: 25px;
+        font-weight: bold;
+        color:white;
+   
+    }
+
+    @media (max-width: 767px) {
+        p{
+        font-size: 20px;
+        font-weight: bold;
+        color:white;
+    }
+    strong{
+        font-size: 20px;
+        font-weight: bold;
+        color:white;
+   
+    }}
+  </style>
+
+
+
+
+<script>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ message }}',
+                    showConfirmButton: true
+                });
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+  </script>
+
+
+
+
+  

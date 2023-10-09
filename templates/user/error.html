@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimonial Site</title>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- Link to Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Link to Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <title>All Users</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <div class="logo d-flex align-items-center">
+              <img src="https://cdn1.iconfinder.com/data/icons/wedding-and-love-3/256/wedding-marriage-love-couple-married-groom-bride-1024.png" alt="Logo" class="mr-2">
+              <span class="logo-text">SoulMates Hub</span>
+            </div>
+            
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav nav-links">
+              <li class="nav-item">
+                <a class="nav-link" href="/user_home/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#advancedSearchModal">Search</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/view_profile/">Profile</a>
+              </li>
+            
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="allUsersDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    All Users
+                </a>
+                <div class="dropdown-menu" aria-labelledby="allUsersDropdown">
+                    <a class="dropdown-item" href="/all_users/" style="font-weight: bold;color:black;">View All Users</a>
+                    <a class="dropdown-item" href="/interested_profiles/" style="font-weight: bold;color:black;">Interest</a>
+                    <a class="dropdown-item" href="/view_report_profile/" style="font-weight: bold;color:black;">Report</a>
+  
+                  </div>
+            </li>
+            
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#subscriptionModal">Subscription</a>
+            </li>
+            
+              <li class="nav-item">
+                <a class="nav-link" href="/logout/">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+<br>
+<br>
+<br>
+<br>
+
+<div class="col-md-12">
+    <div class="alert alert-warning">
+        <p>You don't have an active subscription. Subscribe to access user profiles.</p>
+        <a href="{% url 'user_home' %}" class="btn btn-" style="background-color: white;color:#D93B38;font-weight:bold;">Go Back</a>
+    </div>
+</div>
+    
+    
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+  <footer class="footer">
+      <div class="container">
+          <div class="row">
+              <div class="footer-col">
+                  <h4>company</h4>
+                  <ul>
+                      <li><a href="#">about us</a></li>
+                      <li><a href="#">our services</a></li>
+                      <li><a href="#">privacy policy</a></li>
+                      <li><a href="#">affiliate program</a></li>
+                  </ul>
+              </div>
+              <div class="footer-col">
+                <h4>Help &amp; Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Find Your Match</h4>
+                <ul>
+                    <li><a href="#">Search Profiles</a></li>
+                    <li><a href="#">Membership Plans</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Safety Tips</a></li>
+                </ul>
+            </div>
+            
+              <div class="footer-col">
+                  <h4>follow us</h4>
+                  <div class="social-links">
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-instagram"></i></a>
+                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>     
+</body>
+</html>
+<style>
+  /* CSS Styles */
+.profile-picture {
+  width:410px; /* Adjust the width as per your design */
+  height: 440px; /* Adjust the height as per your design */
+  object-fit: cover; /* This property ensures the image covers the entire container */
+}
+
+@media(max-width: 767px){
+  .profile-picture {
+      width:240px; /* Adjust the width as per your design */
+      height: 300px; /* Adjust the height as per your design */
+      object-fit: cover; /* This property ensures the image covers the entire container */
+  }}
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  .navbar {
+      background-color: #f8f8f8;
+      display: flex;
+      justify-content: center; /* Center-align contents horizontally */
+      align-items: center;
+      padding: 10px 0; /* Remove horizontal padding and keep vertical padding */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      font-size: 34px;
+      font-weight: bold;
+      color: #D93B38;
+    }
+    
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px; /* Add a gap between navigation items */
+      margin: 0; /* Remove margin to align navigation links properly */
+      padding: 0; /* Remove padding to align navigation links properly */
+    }
+    
+    .nav-links li {
+      font-size: 25px; /* Adjust the font size */
+      padding: 5px 10px;
+      transition: background-color 0.3s ease; /* Add a transition for the background color change */
+    }
+    
+    .nav-links li:hover {
+      background-color: #D93B38; /* Change the background color on hover to deep red */
+    }
+    
+    .nav-links li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-links li:hover a {
+      color: #fff; /* Change the text color to white on hover */
+    }
+    
+    .navbar .logo img {
+      max-height: 70px; /* Set the maximum height of the image */
+      margin-right: 5px; /* Add some spacing between the image and text */
+    }
+/* CSS */
+/* For larger screens (desktop) */
+.logo {
+    font-size: 34px;
+    font-weight: bold;
+    color: #D93B38;
+  }
+  
+  /* For smaller screens (mobile) */
+  @media (max-width: 767px) {
+    .logo-text {
+      font-size: 20px; /* Adjust the font size for mobile view */
+      display: inline; /* Display the logo text on mobile view */
+      margin-left: 10px; /* Add some spacing between the logo image and text */
+    }
+  
+    .logo img {
+      max-height: 50px; /* Adjust the image height for mobile view */
+    }
+  }
+  
+
+.footer{
+  background-color: white;
+  padding: 70px 0;
+}
+.footer-col{
+ width: 25%;
+ padding: 0 15px;
+}
+.footer-col h4{
+  font-size: 18px;
+  color:#D93B38 ;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col h4::before{
+  content: '';
+  position: absolute;
+  left:0;
+  bottom: -10px;
+  background-color: #e91e63;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child){
+  margin-bottom: 10px;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: black;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+  color: black;
+  padding-left: 8px;
+}
+.footer-col .social-links a{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255,255,255,0.2);
+  margin:0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: black;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+  color: #24262b;
+  background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+.footer-col{
+  width: 50%;
+  margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+.footer-col{
+  width: 100%;
+}
+}
+
+
+body {
+  background-image: url('../static/back.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.nav-link{
+  font-weight: bold;
+}
+</style>
+
+<script>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ message }}',
+                    showConfirmButton: true
+                });
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+  </script>

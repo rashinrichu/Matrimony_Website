@@ -1,0 +1,29 @@
+<!-- show_messages.html -->
+<h2 class="text-center mb-4">Message History with {{ receiver.username }}</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Display received messages -->
+            <h3>Received Messages</h3>
+            <div class="message-history">
+                {% for message in received_messages %}
+                    <div class="message received">
+                        <p>{{ message.content }}</p>
+                        <small>{{ message.timestamp }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Display sent messages -->
+            <h3>Sent Messages</h3>
+            <div class="message-history">
+                {% for message in sent_messages %}
+                    <div class="message sent">
+                        <p>{{ message.content }}</p>
+                        <small>{{ message.timestamp }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

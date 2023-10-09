@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Subscriptions</title>
+</head>
+<body>
+    <h1>Your Subscriptions</h1>
+    
+    {% if subscriptions %}
+        <ul>
+            {% for subscription in subscriptions %}
+                <li>
+                    <strong>Name:</strong> {{ subscription.name }}<br>
+                    <strong>Amount:</strong> ${{ subscription.amount }}<br>
+                    <strong>Payment Date:</strong> {{ subscription.payment_date }}<br>
+                    <strong>Expiration Date:</strong> {{ subscription.expiration_date }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You don't have any subscriptions yet.</p>
+    {% endif %}
+    
+    <a href="{% url 'user_home' %}">Go back to home</a>
+</body>
+</html>

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimonial Site</title>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Link to Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Link to Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+
+/* Existing CSS */
+.navbar {
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: center; /* Center-align contents horizontally */
+  align-items: center;
+  padding: 10px 0; /* Remove horizontal padding and keep vertical padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 34px;
+  font-weight: bold;
+  color: #D93B38;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px; /* Add a gap between navigation items */
+  margin: 0; /* Remove margin to align navigation links properly */
+  padding: 0; /* Remove padding to align navigation links properly */
+}
+
+.nav-links li {
+  font-size: 25px; /* Adjust the font size */
+  padding: 5px 10px;
+  transition: background-color 0.3s ease; /* Add a transition for the background color change */
+}
+
+.nav-links li:hover {
+  background-color: #D93B38; /* Change the background color on hover to deep red */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-links li:hover a {
+  color: #fff; /* Change the text color to white on hover */
+}
+
+.navbar .logo img {
+  max-height: 70px; /* Set the maximum height of the image */
+  margin-right: 5px; /* Add some spacing between the image and text */
+}
+
+/* CSS for different screen sizes */
+/* For larger screens (desktop) */
+@media (max-width: 1199px) {
+  .logo {
+    font-size: 30px;
+  }
+  .nav-links li {
+    font-size: 22px;
+  }
+  .logo img {
+    max-height: 60px;
+  }
+}
+
+/* For medium screens (tablets) */
+@media (max-width: 991px) {
+  .logo {
+    font-size: 20px;
+  }
+  .nav-links li {
+    font-size: 20px;
+  }
+  .logo img {
+    max-height: 50px;
+  }
+}
+
+/* For smaller screens (mobile) */
+@media (max-width: 767px) {
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .nav-links li {
+    font-size: 18px;
+    padding: 5px 8px;
+  }
+  .logo img {
+    max-height: 50px;
+  }
+}
+/* For screens up to 1061px width (including 1061px) */
+@media (max-width: 1062px) {
+  .logo {
+    font-size: 20px;
+  }
+  .nav-links li {
+    font-size: 20px;
+  }
+  .logo img {
+    max-height: 30px;
+  }
+}
+
+  
+      
+    h2{
+        color:white;
+        font-size: 40px;
+        font-weight: bold;
+    }
+    .card {
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        width: 300px;
+        height: 300px;
+      }
+      .center{
+        background-color: #D93B38;
+      }
+      .login-modal .modal-content {
+        background-color: #D93B38; /* Deep Red background color */
+        border: none;
+        color: #fff; /* Text color */
+      }
+  
+      .login-modal .modal-header {
+        border-bottom: none;
+      }
+  
+      .login-modal .modal-title {
+        color: #fff; /* Title color */
+      }
+  
+      .login-modal .close {
+        color: #fff; /* Close icon color */
+      }
+  
+      .login-modal .form-control {
+        background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+        color: #fff; /* Text color */
+      }
+  
+      .login-modal .btn-primary {
+        background-color: #fff; /* Button background color */
+        color: #D93B38; /* Button text color */
+      }
+  
+      .login-modal .btn-primary:hover {
+        background-color: #D93B38; /* Button background color on hover */
+        color: #fff; /* Button text color on hover */
+      }
+      
+  </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <div class="logo d-flex align-items-center">
+            <img src="https://cdn1.iconfinder.com/data/icons/wedding-and-love-3/256/wedding-marriage-love-couple-married-groom-bride-1024.png" alt="Logo" class="mr-2">
+            <span class="logo-text">SoulMates Hub</span>
+          </div>
+          
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav nav-links">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#advancedSearchModal">Search</a>
+          </li>
+        
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact/">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup/">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5 custom-container was-validated" style="width: 800px; border: 4px solid black; background-color: #D93B38;">
+      <h2 class="text-center">Sign Up</h2>
+      <br>
+      <br>
+      <form method="post" action="{% url 'registration' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          
+          <!-- Basic Information -->
+          <div class="section">
+            <h3 class="text-center">Basic Information</h3>
+
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="username">Username (Start with a capital letter):</label>
+                    <input type="text" class="form-control" id="username" name="username" required pattern="[A-Z][a-zA-Z0-9]*">
+                    <div class="invalid-feedback">Username must start with a capital letter.</div>
+                          </div>
+                  <div class="form-group col-md-6">
+                      <label for="gender">Gender</label>
+                      <select class="form-control" id="gender" name="gender" required>
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="form-row">
+                  <div class="form-group col-md-3">
+                      <label for="height">Height</label>
+                      <input type="text" class="form-control" id="height" name="height" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="age">Age</label>
+                      <input type="number" class="form-control" id="age" name="age" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="job">Job</label>
+                      <input type="text" class="form-control" id="job" name="job" required>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="worked_at">Worked at</label>
+                      <input type="text" class="form-control" id="worked_at" name="worked_at" required>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Educational and Contact Information -->
+          <div class="section">
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="education">Education</label>
+                      <select class="form-control" id="education" name="education" required>
+                          <option value="high_school">High School</option>
+                          <option value="associate_degree">Associate Degree</option>
+                          <option value="bachelors_degree">Bachelor's Degree</option>
+                          <option value="masters_degree">Master's Degree</option>
+                          <option value="doctorate">Doctorate</option>
+                          <!-- Add more education choices as needed -->
+                      </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="selected_course">Selected Course</label>
+                      <select class="form-control" id="selected_course" name="selected_course">
+                          <!-- Options will be dynamically added by JavaScript -->
+                          <option value="" selected disabled>Select Course</option>
+                      </select>
+                  </div>
+              </div>
+              
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="address">Address</label>
+                      <textarea class="form-control full-width" id="address" name="address" required></textarea>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control is-invalid" id="email" name="email" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid email.
+                    </div>
+                </div>
+                
+              </div>
+          </div>
+          
+          <!-- Religion and Caste Information -->
+          <div class="section">
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="religion">Religion</label>
+                      <select class="form-control" id="religion" name="religion" required>
+                          <option value="hindu">Hindu</option>
+                          <option value="muslim">Muslim</option>
+                          <option value="christian">Christian</option>
+                          <!-- Add more religion options as needed -->
+                      </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="caste">Caste</label>
+                      <select class="form-control" id="caste" name="caste" required>
+                          <!-- Options will be dynamically populated based on selected religion -->
+                      </select>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- District and Place Information -->
+          <div class="section">
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="district">District</label>
+                      <select class="form-control" id="district" name="district" required>
+                          <option value="" selected disabled>Select District</option>
+                          {% for district, _ in district_choices %}
+                          <option value="{{ district }}">{{ district }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="selected_place">Place</label>
+                      <select class="form-control" id="selected_place" name="place" required>
+                      </select>
+                  </div>
+              </div>
+          </div>
+          
+<!-- Marital Status and About Section -->
+<div class="section">
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <label for="marital_status">Marital Status</label>
+          <select class="form-control" id="marital_status" name="marital_status" required>
+              <option value="" selected disabled>Select Marital Status</option>
+              {% for value, label in marital_choices %}
+              <option value="{{ value }}">{{ label }}</option>
+              {% endfor %}
+          </select>
+      </div>
+      <div class="form-group col-md-6">
+          <label for="about">About</label>
+          <input type="text" class="form-control" id="about" name="about" required>
+      </div>
+  </div>
+</div>
+        
+          <!-- Mobile Number, Profile Picture, and Other Details -->
+          <div class="section">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="mob">Mobile Number</label>
+                  <input type="text" class="form-control is-invalid" id="mob" name="mob" required pattern="[0-9]{10}"  maxlength="10">
+                  <div class="invalid-feedback">
+                      Please enter a valid 10-digit mobile number.
+                  </div>
+              </div>
+              
+                              <div class="form-group col-md-6">
+                      <label for="date_of_birth">DOB</label>
+                      <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                  </div>
+                
+              </div>
+          </div>
+          
+          <!-- Family Information -->
+          <div class="section">
+            <h3 class="text-center">About Siblings</h3>
+            <br>
+            <br>
+              <div class="form-row">
+                  <div class="form-group col-md-3">
+                      <label for="male_siblings">Male</label>
+                      <select class="form-control form-control-sm" id="male_siblings" name="male_siblings">
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                                    <!-- Add more options for male siblings -->
+                      </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="female_siblings">Female</label>
+                      <select class="form-control form-control-sm" id="female_siblings" name="female_siblings">
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                                    <!-- Add more options for female siblings -->
+                      </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="married_male_siblings">Married Male</label>
+                      <select class="form-control form-control-sm" id="married_male_siblings" name="married_male_siblings">
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                                    <!-- Add more options for married male siblings -->
+                      </select>
+                  </div>
+                  <div class="form-group col-md-3">
+                      <label for="married_female_siblings">Married Female</label>
+                      <select class="form-control form-control-sm" id="married_female_siblings" name="married_female_siblings">
+                          <option value="0">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                                    <!-- Add more options for married female siblings -->
+                      </select>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Additional Family Information -->
+          <div class="section">
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="father_name">Father's Name</label>
+                      <input type="text" class="form-control" id="father_name" name="father_name" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="father_job">Father's Job</label>
+                      <input type="text" class="form-control" id="father_job" name="father_job">
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="mother_name">Mother's Name</label>
+                      <input type="text" class="form-control" id="mother_name" name="mother_name" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="mother_job">Mother's Job</label>
+                      <input type="text" class="form-control" id="mother_job" name="mother_job">
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Upload Photos -->
+          <div class="section">
+            <h3 class="text-center">Upload Photos</h3>
+<br>
+<br>
+              <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="profile_picture">Profile Picture</label>
+                <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/*" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="photo_1">Photo 1</label>
+                <input type="file" class="form-control" id="photo_1" name="photo_1" accept="image/*">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="photo_2">Photo 2</label>
+                <input type="file" class="form-control" id="photo_2" name="photo_2" accept="image/*">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="photo_3">Photo 3</label>
+                <input type="file" class="form-control" id="photo_3" name="photo_3" accept="image/*">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="photo_4">Photo 4</label>
+                <input type="file" class="form-control" id="photo_4" name="photo_4" accept="image/*">
+            </div>
+        </div>
+          </div>
+          <!-- Password -->
+          <div class="section">
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" name="password" required>
+                      <div id="password-feedback"></div>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label for="confirm_password">Confirm Password</label>
+                      <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                      <div id="confirm-password-feedback"></div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <center>
+              <button type="submit" class="btn btn-" id="btn" style="background-color: white; color: #D93B38; width: 100%;">Sign Up</button>
+          </center>
+      </form>
+  </div>
+          <!-- Family Information -->
+
+
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="modal fade login-modal" id="loginModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="{% url 'login_view' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                  <h4>Help &amp; Support</h4>
+                  <ul>
+                      <li><a href="#">FAQ</a></li>
+                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="#">Privacy Policy</a></li>
+                      <li><a href="#">Terms &amp; Conditions</a></li>
+                  </ul>
+              </div>
+              <div class="footer-col">
+                  <h4>Find Your Match</h4>
+                  <ul>
+                      <li><a href="#">Search Profiles</a></li>
+                      <li><a href="#">Membership Plans</a></li>
+                      <li><a href="#">Success Stories</a></li>
+                      <li><a href="#">Safety Tips</a></li>
+                  </ul>
+              </div>
+              
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </body>
+</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+
+
+.footer{
+  background-color: white;
+  padding: 70px 0;
+}
+.footer-col{
+ width: 25%;
+ padding: 0 15px;
+}
+.footer-col h4{
+  font-size: 18px;
+  color:#D93B38 ;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col h4::before{
+  content: '';
+  position: absolute;
+  left:0;
+  bottom: -10px;
+  background-color: #e91e63;
+  height: 2px;
+  box-sizing: border-box;
+  width: 50px;
+}
+.footer-col ul li:not(:last-child){
+  margin-bottom: 10px;
+}
+.footer-col ul li a{
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: black;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+  color: black;
+  padding-left: 8px;
+}
+.footer-col .social-links a{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255,255,255,0.2);
+  margin:0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: black;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+  color: #24262b;
+  background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+.footer-col{
+  width: 50%;
+  margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+.footer-col{
+  width: 100%;
+}
+}
+
+h3{
+  color: white;
+  
+}
+label{
+    color:white;
+    font-size: 20px;
+    font-weight: bold;
+}
+body {
+    background-image: url('../static/back.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h1{
+    color:white;
+}
+
+/* Adjust styles for mobile view */
+/* Adjust styles for mobile view */
+@media (max-width: 767px) {
+    .container {
+      padding: 10px;
+      border: none;
+      background-color: transparent;
+      max-width: 250px;
+    }
+  
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .form-group {
+      margin: 0;
+    }
+  
+    label {
+      margin-bottom: 2px;
+      font-size: 13px;
+    }
+  
+    input[type="text"],
+    input[type="number"],
+    select {
+      font-size: 12px;
+      padding: 5px;
+    }
+  
+    textarea {
+      font-size: 12px;
+      padding: 5px;
+      resize: none;
+    }
+  
+    .btn-primary {
+      display: block;
+      margin: 10px auto;
+      width: 100%;
+      max-width: 150px;
+      font-size: 12px;
+    }
+  }
+      
+  .full-width {
+    width: 100%;
+}
+ .nav-link{
+  font-weight: bold;
+ }
+ .custom-container {
+  width: 800px;
+  border: 4px solid black;
+  background-color: #D93B38;
+  padding: 20px; /* Add some spacing inside the container */
+}
+
+/* Adjust container size in mobile view */
+@media (max-width: 767px) {
+  .custom-container {
+      width: 100%; /* Full width */
+      height: auto; /* Allow content to dictate height */
+  }
+}
+@media (max-width: 767px) {
+  #btn {
+      width: 50%; /* Full width */
+       /* Allow content to dictate height */
+  }
+}
+
+
+</style>
+  <!-- Include Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+<script>
+// Get the religion and caste dropdown elements
+const religionDropdown = document.getElementById('religion');
+const casteDropdown = document.getElementById('caste');
+
+// Define religion and caste options
+const religionOptions = ['hindu', 'muslim', 'christian', 'sikh', 'unspecified'];
+const casteOptions = {
+  hindu: ['brahmin', 'kshatriya', 'vaishya', 'shudra'],
+  muslim: ['darzi', 'jolaha', 'fakir', 'rangrez'],
+  christian: ['darzi', 'brahmin', 'jolaha', 'fakir', 'rangrez'],
+  unspecified: [] // No caste options for 'unspecified' religion
+};
+
+// Function to update dropdown options
+function updateDropdown(dropdown, options) {
+  dropdown.innerHTML = ''; // Clear previous options
+
+  // Add "Unspecified" option
+  const unspecifiedOption = document.createElement('option');
+  unspecifiedOption.value = 'unspecified';
+  unspecifiedOption.textContent = 'Unspecified';
+  dropdown.appendChild(unspecifiedOption);
+
+  // Add other options
+  options.forEach(option => {
+    const optionElement = document.createElement('option');
+    optionElement.value = option;
+    optionElement.textContent = option.charAt(0).toUpperCase() + option.slice(1);
+    dropdown.appendChild(optionElement);
+  });
+}
+
+// Update religion dropdown
+updateDropdown(religionDropdown, religionOptions);
+
+// Update caste dropdown based on selected religion
+religionDropdown.addEventListener('change', () => {
+  const selectedReligion = religionDropdown.value;
+  const selectedCasteOptions = casteOptions[selectedReligion] || [];
+
+  updateDropdown(casteDropdown, selectedCasteOptions);
+});
+
+
+   
+ 
+    </script>
+    <script>
+      const districtDropdown = document.getElementById('district');
+      const placeDropdown = document.getElementById('selected_place');
+      
+      // Define place options for each district
+      const placeChoices = {
+          {% for district, places in place_choices %}
+          '{{ district }}': [
+              {% for place, _ in places %}
+              '{{ place }}',
+              {% endfor %}
+          ],
+          {% endfor %}
+      };
+      
+      // Function to update the place dropdown options
+      function updatePlaceDropdown() {
+          const selectedDistrict = districtDropdown.value;
+          const selectedPlaceOptions = placeChoices[selectedDistrict] || [];
+          
+          // Clear previous options
+          placeDropdown.innerHTML = '';
+          
+          // Add new options based on selected district
+          selectedPlaceOptions.forEach(place => {
+              const option = document.createElement('option');
+              option.value = place;
+              option.textContent = place;
+              placeDropdown.appendChild(option);
+          });
+      }
+      
+      // Initialize place dropdown based on initial district
+      updatePlaceDropdown();
+      
+      // Update place dropdown whenever district changes
+      districtDropdown.addEventListener('change', updatePlaceDropdown);
+  </script>
+    
+            <script>
+                const educationSelect = document.getElementById('education');
+                const courseSelect = document.getElementById('selected_course');
+            
+                const coursesByEducation = {
+                    high_school: [
+                        'Mathematics',
+                        'English',
+                        'Science',
+                        'Social Studies',
+                        'History',
+                        'Others'
+                    ],
+                    associate_degree: [
+                        'Business Administration',
+                        'Computer Science',
+                        'Engineering',
+                        'Criminal Justice',
+                        'Healthcare Management',
+                        'Others'
+                    ],
+                    bachelors_degree: [
+                        'Psychology',
+                        'Marketing',
+                        'Biology',
+                        'Economics',
+                        'Political Science',
+                        'Others'
+                    ],
+                    masters_degree: [
+                        'MBA',
+                        'Computer Science',
+                        'Education',
+                        'Public Health',
+                        'Fine Arts',
+                        'Others'
+                    ],
+                    doctorate: [
+                        'Ph.D. in Psychology',
+                        'Doctor of Medicine (MD)',
+                        'Doctor of Law (JD)',
+                        'Ph.D. in Engineering',
+                        'Ph.D. in Literature',
+                        'Others'
+                    ]
+                    // Add more courses based on education choices
+                };
+            
+                educationSelect.addEventListener('change', () => {
+                    const selectedEducation = educationSelect.value;
+                    courseSelect.innerHTML = '<option value="" selected disabled>Select Course</option>';
+            
+                    if (selectedEducation in coursesByEducation) {
+                        const courses = coursesByEducation[selectedEducation];
+                        courses.forEach(course => {
+                            const option = document.createElement('option');
+                            option.value = course;
+                            option.textContent = course;
+                            courseSelect.appendChild(option);
+                        });
+                    }
+                });
+            </script>
+                        
+
+
+
+            <script>
+              const passwordInput = document.getElementById("password");
+              const confirmPasswordInput = document.getElementById("confirm_password");
+              const passwordFeedback = document.getElementById("password-feedback");
+              const confirmFeedback = document.getElementById("confirm-password-feedback");
+          
+              passwordInput.addEventListener("input", validatePassword);
+              confirmPasswordInput.addEventListener("input", validateConfirmPassword);
+          
+              function validatePassword() {
+                  const password = passwordInput.value;
+          
+                  // Define the regular expressions for each password requirement
+                  const numberPattern = /\d/;
+                  const lowercasePattern = /[a-z]/;
+                  const uppercasePattern = /[A-Z]/;
+                  const specialCharacterPattern = /\W/;
+                  const lengthPattern = /.{8,}/;
+          
+                  const requirementsMet = {
+                      number: numberPattern.test(password),
+                      lowercase: lowercasePattern.test(password),
+                      uppercase: uppercasePattern.test(password),
+                      specialCharacter: specialCharacterPattern.test(password),
+                      length: lengthPattern.test(password)
+                  };
+          
+                  let feedback = "<ul>";
+          
+                  if (!requirementsMet.number) {
+                      feedback += "<li>Include at least one number.</li>";
+                  }
+                  if (!requirementsMet.lowercase) {
+                      feedback += "<li>Include at least one lowercase letter.</li>";
+                  }
+                  if (!requirementsMet.uppercase) {
+                      feedback += "<li>Include at least one uppercase letter.</li>";
+                  }
+                  if (!requirementsMet.specialCharacter) {
+                      feedback += "<li>Include at least one special character.</li>";
+                  }
+                  if (!requirementsMet.length) {
+                      feedback += "<li>Be at least 8 characters long.</li>";
+                  }
+          
+                  feedback += "</ul>";
+          
+                  if (requirementsMet.number && requirementsMet.lowercase && requirementsMet.uppercase && requirementsMet.specialCharacter && requirementsMet.length) {
+                      passwordFeedback.innerHTML = "<p>Password is correct.</p>";
+                      passwordFeedback.style.color = "white";
+                      passwordFeedback.style.fontSize = "30px";
+
+                  } else {
+                      passwordFeedback.innerHTML = feedback;
+                      passwordFeedback.style.color = "white";
+                  }
+          
+                  validateConfirmPassword(); // Check if passwords match
+              }
+          
+              function validateConfirmPassword() {
+                  const password = passwordInput.value;
+                  const confirmPassword = confirmPasswordInput.value;
+          
+                  if (password === confirmPassword) {
+                      confirmFeedback.innerHTML = "<p>Passwords match.</p>";
+                      confirmFeedback.style.color = "white";
+                      passwordFeedback.style.fontSize = "30px";
+
+                  } else {
+                      confirmFeedback.innerHTML = "<p>Passwords do not match.</p>";
+                      confirmFeedback.style.color = "white";
+                  }
+              }
+          
+              function validateForm() {
+                  return validatePassword() && passwordInput.value === confirmPasswordInput.value;
+              }
+          </script>

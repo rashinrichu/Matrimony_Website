@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrimonial Site</title>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<!-- Link to Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Link to Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="logo d-flex align-items-center">
+          <img src="https://cdn1.iconfinder.com/data/icons/wedding-and-love-3/256/wedding-marriage-love-couple-married-groom-bride-1024.png" alt="Logo" class="mr-2">
+          <span class="logo-text">SoulMates Hub</span>
+        </div>
+        
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav nav-links">
+          <li class="nav-item">
+            <a class="nav-link" href="/user_home/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#advancedSearchModal">Search</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/view_profile/">Profile</a>
+          </li>
+        
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="allUsersDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                All Users
+            </a>
+            <div class="dropdown-menu" aria-labelledby="allUsersDropdown">
+                <a class="dropdown-item" href="/all_users/" style="font-weight: bold;color:black;">View All Users</a>
+                <a class="dropdown-item" href="/interested_profiles/" style="font-weight: bold;color:black;">Interest</a>
+                <a class="dropdown-item" href="/view_report_profile/" style="font-weight: bold;color:black;">Report</a>
+
+              </div>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#subscriptionModal">Subscription</a>
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="/logout/">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<br>
+  <br>
+  <br>
+  <form method="post" enctype="multipart/form-data" class="custom-form" style="width: 50%; margin: auto; background-color: #D93B38; padding: 20px;">
+    {% csrf_token %}
+    <h2 class="text-center" style="color:white;">Edit Profile</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="education">Education:</label>
+                <select id="education" name="education" class="form-control">
+                    <option value="">Select Education</option>
+                    {% for choice in education_choices %}
+                        <option value="{{ choice.0 }}" {% if user_profile.education == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        
+        
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="selected_course">Selected Course:</label>
+                <select id="selected_course" name="selected_course" class="form-control">
+                    <option value="">Select Course</option>
+                    {% for course in selected_course_choices %}
+                        <option value="{{ course }}" {% if user_profile.selected_course == course %}selected{% endif %}>{{ course }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        
+        
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="job">Job:</label>
+                <input type="text" id="job" name="job" class="form-control" value="{{ user_profile.job }}">
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="worked_at">Worked At:</label>
+                <input type="text" id="worked_at" name="worked_at" class="form-control" value="{{ user_profile.worked_at }}">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="religion">Religion:</label>
+                <select id="religion" name="religion" class="form-control">
+                    {% for choice in user_profile.RELIGION_CHOICES %}
+                        <option value="{{ choice.0 }}" {% if user_profile.religion == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="caste">Caste:</label>
+                <select id="caste" name="caste" class="form-control">
+                    {% for choice in user_profile.CASTE_CHOICES %}
+                        <option value="{{ choice.0 }}" {% if user_profile.caste == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="district">District:</label>
+                <select id="district" name="district" class="form-control">
+                    {% for choice in user_profile.DISTRICT_CHOICES %}
+                        <option value="{{ choice.0 }}" {% if user_profile.district == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="place">Place:</label>
+                <select id="place" name="place" class="form-control">
+                    {% for choice in user_profile.PLACE_CHOICES %}
+                        <option value="{{ choice.0 }}" {% if user_profile.place == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth:</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" {% if user_profile.date_of_birth %}value="{{ user_profile.date_of_birth|date:'Y-m-d' }}" {% endif %} placeholder="YYYY-MM-DD">
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" class="form-control">{{ user_profile.address }}</textarea>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" class="form-control">
+                    {% for choice in user_profile.GENDER_CHOICES %}
+                        <option value="{{ choice.0 }}" {% if user_profile.gender == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="height">Height:</label>
+                <input type="text" id="height" name="height" class="form-control" value="{{ user_profile.height }}">
+            </div>
+        </div>
+    </div>
+        
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" class="form-control" value="{{ user_profile.age }}">
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="mob">Mobile Number:</label>
+                <input type="text" id="mob" name="mob" class="form-control" value="{{ user_profile.mob }}">
+            </div>
+        </div>
+    
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="marital_status">Marital Status:</label>
+                <select id="marital_status" name="marital_status" class="form-control">
+                    {% for choice in user_profile.MARITAL_STATUS_CHOICES %}
+                        <option value="{{ choice.0 }}" {% if user_profile.marital_status == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <!-- Father's Name -->
+        <div class="form-group col-md-6">
+            <label for="father_name">Father's Name</label>
+            <input type="text" class="form-control" id="father_name" name="father_name" value="{{ user_profile.father_name }}">
+        </div>
+    
+        <!-- Father's Job -->
+        <div class="form-group col-md-6">
+            <label for="father_job">Father's Job</label>
+            <input type="text" class="form-control" id="father_job" name="father_job" value="{{ user_profile.father_job }}">
+        </div>
+    
+        <!-- Mother's Name -->
+        <div class="form-group col-md-6">
+            <label for="mother_name">Mother's Name</label>
+            <input type="text" class="form-control" id="mother_name" name="mother_name" value="{{ user_profile.mother_name }}">
+        </div>
+    
+        <!-- Mother's Job -->
+        <div class="form-group col-md-6">
+            <label for="mother_job">Mother's Job</label>
+            <input type="text" class="form-control" id="mother_job" name="mother_job" value="{{ user_profile.mother_job }}">
+        </div>
+    </div>
+    
+   
+    </div>
+    
+    <div class="form-row">
+        <!-- Male Siblings -->
+        <div class="form-group col-md-3">
+            <label for="male_siblings">Male Siblings</label>
+            <select class="form-control form-control-sm" id="male_siblings" name="male_siblings">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+    
+        <!-- Female Siblings -->
+        <div class="form-group col-md-3">
+            <label for="female_siblings">Female Siblings</label>
+            <select class="form-control form-control-sm" id="female_siblings" name="female_siblings">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+    
+        <!-- Married Male Siblings -->
+        <div class="form-group col-md-3">
+            <label for="married_male_siblings">Married Male Siblings</label>
+            <select class="form-control form-control-sm" id="married_male_siblings" name="married_male_siblings">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+    
+        <!-- Married Female Siblings -->
+        <div class="form-group col-md-3">
+            <label for="married_female_siblings">Married Female Siblings</label>
+            <select class="form-control form-control-sm" id="married_female_siblings" name="married_female_siblings">
+                <option value="">Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="about">About:</label>
+        <textarea id="about" name="about" class="form-control">{{ user_profile.about }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="Email">Email:</label>
+        <input type="email" id="email" name="email" class="form-control" value="{{ user_profile.user.email }}">
+    </div>
+    <div class="form-group">
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" id="profile_picture" name="profile_picture" class="form-control">
+    </div>
+    
+    <!-- Repeat similar form groups for 'photo_1', 'photo_2', 'photo_3', 'photo_4' -->
+    <div class="text-center">
+    <button type="submit" class="btn btn- text-center" style="background-color: white;color:#D93B38;font-weight:bold;">Save</button>
+</div>
+</form>
+
+
+<br>
+<br>
+<br>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col">
+                <h4>company</h4>
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">affiliate program</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Help &amp; Support</h4>
+              <ul>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms &amp; Conditions</a></li>
+              </ul>
+          </div>
+          <div class="footer-col">
+              <h4>Find Your Match</h4>
+              <ul>
+                  <li><a href="#">Search Profiles</a></li>
+                  <li><a href="#">Membership Plans</a></li>
+                  <li><a href="#">Success Stories</a></li>
+                  <li><a href="#">Safety Tips</a></li>
+              </ul>
+          </div>
+          
+            <div class="footer-col">
+                <h4>follow us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> 
+</body>
+</html>
+<style>
+    .social-links a {
+        color: #333; /* Change to your desired color */
+        font-size: 30px; /* Adjust the font size as needed */
+        margin-right: 10px; /* Add spacing between icons */
+        text-decoration: none;
+      }
+      
+      /* On hover, change the color */
+      .social-links a:hover {
+        color:#D93B38; /* Change to your desired hover color */
+      }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    .navbar {
+        background-color: #f8f8f8;
+        display: flex;
+        justify-content: center; /* Center-align contents horizontally */
+        align-items: center;
+        padding: 10px 0; /* Remove horizontal padding and keep vertical padding */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .logo {
+        font-size: 34px;
+        font-weight: bold;
+        color: #D93B38;
+      }
+      
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px; /* Add a gap between navigation items */
+        margin: 0; /* Remove margin to align navigation links properly */
+        padding: 0; /* Remove padding to align navigation links properly */
+      }
+      
+      .nav-links li {
+        font-size: 25px; /* Adjust the font size */
+        padding: 5px 10px;
+        transition: background-color 0.3s ease; /* Add a transition for the background color change */
+      }
+      
+      .nav-links li:hover {
+        background-color: #D93B38; /* Change the background color on hover to deep red */
+      }
+      
+      .nav-links li a {
+        text-decoration: none;
+        color: #333;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-links li:hover a {
+        color: #fff; /* Change the text color to white on hover */
+      }
+      
+      .navbar .logo img {
+        max-height: 70px; /* Set the maximum height of the image */
+        margin-right: 5px; /* Add some spacing between the image and text */
+      }
+      
+      /* CSS for different screen sizes */
+      /* For larger screens (desktop) */
+      @media (max-width: 1199px) {
+        .logo {
+          font-size: 30px;
+        }
+        .nav-links li {
+          font-size: 22px;
+        }
+        .logo img {
+          max-height: 60px;
+        }
+      }
+      
+      /* For medium screens (tablets) */
+      @media (max-width: 991px) {
+        .logo {
+          font-size: 20px;
+        }
+        .nav-links li {
+          font-size: 20px;
+        }
+        .logo img {
+          max-height: 50px;
+        }
+      }
+      
+      /* For smaller screens (mobile) */
+      @media (max-width: 767px) {
+        .logo {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .nav-links li {
+          font-size: 18px;
+          padding: 5px 8px;
+        }
+        .logo img {
+          max-height: 50px;
+        }
+      }
+      /* For screens up to 1061px width (including 1061px) */
+      @media (max-width: 1062px) {
+        .logo {
+          font-size: 20px;
+        }
+        .nav-links li {
+          font-size: 20px;
+        }
+        .logo img {
+          max-height: 30px;
+        }
+      }
+    
+.footer{
+	background-color: white;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color:#D93B38 ;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: black;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: black;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: black;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+
+body {
+    background-image: url('../static/back.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+  .nav-link{
+
+    font-weight: bold;
+  }
+  label{
+    color:white;
+    font-weight: bold;
+  }
+/* Add this media query for screens smaller than a certain width (e.g., 768px) */
+@media (max-width: 768px) {
+    .custom-form {
+        width: 100% !important; /* Set width to 100% and use !important to override any conflicting styles */
+        margin: 0 !important; /* Remove margin to ensure full width */
+        padding: 20px; /* Adjust padding as needed */
+    }
+
+    /* Adjust the font size for the heading */
+    .custom-form h2 {
+        font-size: 20px; /* Reduce the font size for the heading on mobile */
+    }
+
+    /* Adjust the font size and padding for form elements */
+    .custom-form input[type="text"],
+    .custom-form input[type="number"],
+    .custom-form input[type="email"],
+    .custom-form select,
+    .custom-form textarea {
+        font-size: 14px; /* Reduce the font size for better mobile readability */
+        padding: 12px; /* Adjust padding as needed for form elements */
+    }
+
+    /* Center the submit button */
+    .custom-form .text-center button {
+        margin: 20px auto; /* Adjust margin for better spacing */
+        display: block;
+        padding: 12px 24px; /* Adjust padding for the button */
+        font-size: 16px; /* Reduce the font size for the button on mobile */
+    }
+}
+
+
+
+</style>
+
+
+{% with caste_choices_json=user_profile.CASTE_CHOICES|json_script:"caste_choices" %}
+<script>
+    const religionDropdown = document.getElementById('religion');
+    const casteDropdown = document.getElementById('caste');
+
+    // Parse the caste choices JSON
+    const casteChoices = JSON.parse(document.querySelector('#caste_choices').textContent);
+
+    // Function to update the caste dropdown options
+    function updateCasteDropdown() {
+        const selectedReligion = religionDropdown.value;
+        const selectedCasteOptions = casteChoices[selectedReligion] || [];
+
+        // Clear previous options
+        casteDropdown.innerHTML = '';
+
+        // Add a default option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = "";
+        defaultOption.textContent = "Select Caste";
+        casteDropdown.appendChild(defaultOption);
+
+        selectedCasteOptions.forEach(caste => {
+            const option = document.createElement('option');
+            option.value = caste[0];
+            option.textContent = caste[1];
+            casteDropdown.appendChild(option);
+        });
+    }
+
+    updateCasteDropdown();
+
+    religionDropdown.addEventListener('change', updateCasteDropdown);
+</script>
+{% endwith %}
+
+
+
+
+
+
+  <script>
+    const districtDropdown = document.getElementById('district');
+    const placeDropdown = document.getElementById('place');
+    
+    const placeChoices = {
+        {% for district, places in user_profile.PLACE_CHOICES %}
+        "{{ district }}": [
+            {% for place, _ in places %}
+            "{{ place }}",
+            {% endfor %}
+        ],
+        {% endfor %}
+    };
+    
+    function updatePlaceDropdown() {
+        const selectedDistrict = districtDropdown.value;
+        const selectedPlaceOptions = placeChoices[selectedDistrict] || [];
+    
+        placeDropdown.innerHTML = '';
+    
+        const defaultOption = document.createElement('option');
+        defaultOption.value = "";
+        defaultOption.textContent = "Select Place";
+        placeDropdown.appendChild(defaultOption);
+    
+        // Add new options based on the selected district
+        selectedPlaceOptions.forEach(place => {
+            const option = document.createElement('option');
+            option.value = place;
+            option.textContent = place;
+            placeDropdown.appendChild(option);
+        });
+    }
+    
+    updatePlaceDropdown();
+    
+    districtDropdown.addEventListener('change', updatePlaceDropdown);
+</script>
+
+
+
+<script>
+    const educationSelect = document.getElementById('education');
+    const courseSelect = document.getElementById('selected_course');
+
+    const coursesByEducation = {
+        high_school: [
+            'Mathematics',
+            'English',
+            'Science',
+            'Social Studies',
+            'History',
+            'Others'
+        ],
+        associate_degree: [
+            'Business Administration',
+            'Computer Science',
+            'Engineering',
+            'Criminal Justice',
+            'Healthcare Management',
+            'Others'
+        ],
+        bachelors_degree: [
+            'Psychology',
+            'Marketing',
+            'Biology',
+            'Economics',
+            'Political Science',
+            'Others'
+        ],
+        masters_degree: [
+            'MBA',
+            'Computer Science',
+            'Education',
+            'Public Health',
+            'Fine Arts',
+            'Others'
+        ],
+        doctorate: [
+            'Ph.D. in Psychology',
+            'Doctor of Medicine (MD)',
+            'Doctor of Law (JD)',
+            'Ph.D. in Engineering',
+            'Ph.D. in Literature',
+            'Others'
+        ]
+    };
+
+    educationSelect.addEventListener('change', () => {
+        const selectedEducation = educationSelect.value;
+        const courses = coursesByEducation[selectedEducation] || [];
+
+        courseSelect.innerHTML = '';
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = "";
+        defaultOption.textContent = "Select Course";
+        courseSelect.appendChild(defaultOption);
+
+        courses.forEach(course => {
+            const option = document.createElement('option');
+            option.value = course;
+            option.textContent = course;
+            courseSelect.appendChild(option);
+        });
+    });
+</script>
+
+
+
+
+
+
+      
